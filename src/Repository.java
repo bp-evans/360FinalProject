@@ -14,7 +14,7 @@ public class Repository extends Observable{
 	public Stack<Point> getPoints() {
 		
 	}
-	public Stack<Line> getLines() {
+	public Stack<Line> geterghjbeaguhdfbhewgqjbd3Lines() {
 		
 	}
 }
