@@ -7,29 +7,24 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class Main extends JFrame {
-	private static JFrame frame;
-	//private static commandListener listen;
+public class Main extends JFrame implements ActionListener {
+	
+	private JFrame frame;
+	private commandListener listen;
+	mainDisplay disp;
+	
 	public Main() {
-		
-	}
-	public static void main(String[] args) {
-		//listen = new commandListener();
+		listen = new commandListener();
 		// Setting up the main JFrame
-		frame = new JFrame("CSE360 Final Project");
-        // creating and adding the scroll bar
-		
-        //mainDisplay disp = new mainDisplay(); SCROLL BAR IS DISABLED FOR NOW, NEED TO FIGURE OUT HOW TO ADD STUFF INSIDE IT
-        //frame.add(disp.createScroll());
-		
-		
-        frame.setVisible(true);
-        frame.setSize(400, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        JMenuBar jMenuBar = new JMenuBar();
-        frame.setJMenuBar(jMenuBar);
+		//frame = new JFrame("CSE360 Final Project");
+		this.setTitle("CSE 360 Final Project");
+		// creating and adding the scroll bar
+				
+		disp = new mainDisplay(); 
+	    this.add(disp);
+	    
+	    JMenuBar jMenuBar = new JMenuBar();
+        this.setJMenuBar(jMenuBar);
         
         JMenu file = new JMenu("File");
         jMenuBar.add(file);
@@ -37,35 +32,62 @@ public class Main extends JFrame {
         //adds drop down options from file tab
         JMenuItem roster = new JMenuItem("Load a Roster");
         file.add(roster);
+        roster.setActionCommand("roster");
+        roster.addActionListener(this);
+        
         JMenuItem attendance = new JMenuItem("Add Attendance");
         file.add(attendance);
+        attendance.setActionCommand("Attendance");
+        attendance.addActionListener(this);
+        
+        
         JMenuItem save = new JMenuItem("Save");
         file.add(save);
+        save.setActionCommand("save");
+        save.addActionListener(this);
+        
         JMenuItem data = new JMenuItem("Plot Data");
         file.add(data);
+        data.setActionCommand("add");
+        data.addActionListener(this);
         
-        class commandListener2 implements ActionListener {
-        	public String label;
-        	@Override
-        	public void actionPerformed(ActionEvent e) {
-        		// TODO Auto-generated method stub
-        		if(e.getActionCommand() == "aboutPrint") {
-        			System.out.println("Print the about information");
-        			JLabel label = new JLabel("About stuff");
-        			frame.add(label);
-        		}
-        	}
-        }
-
-        //add about tab to menu
-        commandListener2 listen2 = new commandListener2();
+       //add about tab to menu
         JMenu about = new JMenu("About");
         jMenuBar.add(about);
         JMenuItem aboutPrint = new JMenuItem("About");
         about.add(aboutPrint);
         aboutPrint.setActionCommand("aboutPrint");
-        aboutPrint.addActionListener(listen2);
-      
+        aboutPrint.addActionListener(this);
+       
+        
         
 	}
+	public static void main(String[] args) {
+		Main mainScreen = new Main();
+		mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainScreen.setSize(1000,1000);
+		mainScreen.setVisible(true);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getActionCommand() == "aboutPrint") {
+			System.out.println("Print the about information");
+			disp.updateLabel("This project was completed by: Brandon, Ismael, Cameron");
+		}
+		else if(e.getActionCommand() == "save") {
+			
+		}
+		else if(e.getActionCommand() == "roter") {
+			
+		}
+		else if(e.getActionCommand() == "Attendance") {
+			
+		}
+		else if(e.getActionCommand() == "add") {
+			
+		}
+	}
+	
 }

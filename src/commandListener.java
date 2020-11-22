@@ -9,5 +9,17 @@ public class commandListener implements ActionListener {
 		if(e.getActionCommand() == "aboutPrint") {
 			System.out.println("Print the about information");
 		}
+		else if(e.getActionCommand() == "save") {
+			
+		}
+		else if(e.getActionCommand() == "roter") {
+			
+		}
+		else if(e.getActionCommand() == "Attendance") {
+			
+		}
+		else if(e.getActionCommand() == "add") {
+			
+		}
 	}
 }

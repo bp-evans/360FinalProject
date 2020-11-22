@@ -1,5 +1,8 @@
+import java.awt.Point;
 import java.util.Observable;
 import java.util.Stack;
+
+import javax.sound.sampled.Line;
 
 public class Repository extends Observable{
 	
@@ -9,12 +12,17 @@ public class Repository extends Observable{
 		
 	}
 	public Repository getInstance() {
+		return null;
 		
 	}
 	public Stack<Point> getPoints() {
+		return null;
 		
 	}
-	public Stack<Line> geterghjbeaguhdfbhewgqjbd3Lines() {
+	public Stack<Line> Lines() {
+		return null;
 		
 	}
+	
+	
 }
