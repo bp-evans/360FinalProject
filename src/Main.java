@@ -80,7 +80,8 @@ public class Main extends JFrame implements ActionListener {
 			
 		}
 		else if(e.getActionCommand() == "roter") {
-			
+			System.out.println("Please select a csv file to upload");
+			loadRoster.getFile(); //calls getFile from loadRoster allowing user to choose a file to upload
 		}
 		else if(e.getActionCommand() == "Attendance") {
 			
