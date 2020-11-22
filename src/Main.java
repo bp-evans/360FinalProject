@@ -77,7 +77,8 @@ public class Main extends JFrame implements ActionListener {
 			disp.updateLabel("This project was completed by: Brandon, Ismael, Cameron");
 		}
 		else if(e.getActionCommand() == "save") {
-			
+			System.out.println("Save was selected");
+			disp.removeLabel();
 		}
 		else if(e.getActionCommand() == "roter") {
 			

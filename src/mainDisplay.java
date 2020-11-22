@@ -18,6 +18,12 @@ public class mainDisplay extends JPanel implements Observer {
 	
 	public void updateLabel(String arg) { // mainly for use with about
 		label.setText(arg);
+		
+	}
+	
+	public void removeLabel() {
+		this.remove(label); // for testing purposes at the moment
+		this.repaint(); // you need this to update anything that is removed
 	}
 
 	@Override
