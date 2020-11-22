@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+<<<<<<< Updated upstream
+      <module fileurl="file://$PROJECT_DIR$/.idea/360FinalProject.iml" filepath="$PROJECT_DIR$/.idea/360FinalProject.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/360FinalProject.iml" filepath="$PROJECT_DIR$/360FinalProject.iml" />
+>>>>>>> Stashed changes
+    </modules>
+  </component>
+</project>
