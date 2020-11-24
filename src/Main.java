@@ -54,7 +54,7 @@ public class Main extends JFrame implements ActionListener {
        //add about tab to menu
         JMenu about = new JMenu("About");
         jMenuBar.add(about);
-        JMenuItem aboutPrint = new JMenuItem("About");
+        JMenuItem aboutPrint = new JMenuItem("Team Members");
         about.add(aboutPrint);
         aboutPrint.setActionCommand("aboutPrint");
         aboutPrint.addActionListener(this);
@@ -73,8 +73,10 @@ public class Main extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == "aboutPrint") {
-			System.out.println("Print the about information");
-			disp.updateLabel("This project was completed by: Brandon, Ismael, Cameron");
+			//Dialog Box Displaying our names per the slides
+			JOptionPane.showMessageDialog(this, "This project was completed by: Brandon, Ismael, and Cameron");
+			//System.out.println("Print the about information");
+			//disp.updateLabel("This project was completed by: Brandon, Ismael, Cameron");
 		}
 		else if(e.getActionCommand() == "save") {
 			System.out.println("Save was selected");
