@@ -48,7 +48,7 @@ public class Main extends JFrame implements ActionListener {
         
         JMenuItem data = new JMenuItem("Plot Data");
         file.add(data);
-        data.setActionCommand("add");
+        data.setActionCommand("plot");
         data.addActionListener(this);
         
        //add about tab to menu
