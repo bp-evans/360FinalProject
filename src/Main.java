@@ -73,10 +73,7 @@ public class Main extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == "aboutPrint") {
-			//Dialog Box Displaying our names per the slides
-			JOptionPane.showMessageDialog(this, "This project was completed by: Brandon, Ismael, and Cameron");
-			//System.out.println("Print the about information");
-			//disp.updateLabel("This project was completed by: Brandon, Ismael, Cameron");
+			disp.Names();
 		}
 		else if(e.getActionCommand() == "save") {
 			

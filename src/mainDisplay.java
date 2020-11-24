@@ -20,6 +20,10 @@ public class mainDisplay extends JPanel implements Observer {
 		label.setText(arg);
 	}
 
+	public void Names(){ //displays names when about is clicked
+		JOptionPane.showMessageDialog(this, "This project was completed by: Brandon, Ismael, and Cameron");
+	}
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
