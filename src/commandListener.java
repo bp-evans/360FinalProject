@@ -12,13 +12,13 @@ public class commandListener implements ActionListener {
 		else if(e.getActionCommand() == "save") {
 			
 		}
-		else if(e.getActionCommand() == "roter") {
-			
+		else if(e.getActionCommand() == "roster") {
+			loadRoster.loadRoster();
 		}
 		else if(e.getActionCommand() == "Attendance") {
-			
+			loadRoster.loadRoster();
 		}
-		else if(e.getActionCommand() == "add") {
+		else if(e.getActionCommand() == "plot") {
 			
 		}
 	}
