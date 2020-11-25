@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class Menu{
     public static void main(String args[]){
         //create JPanel
@@ -49,5 +50,7 @@ public class Menu{
             }
         }
         roster.addActionListener(new loadRoster());
+        
+        
     }
 }
