@@ -1,4 +1,3 @@
-//prompts user to
 import javax.swing.*;
 
 public class loadRoster {

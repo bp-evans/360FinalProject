@@ -1,5 +1,3 @@
-//main display where stuff is displayed 
-
 import java.util.Observable;
 import java.util.Observer;
 

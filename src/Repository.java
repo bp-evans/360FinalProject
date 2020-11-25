@@ -1,5 +1,3 @@
-//source class where you press button
-
 import java.awt.Point;
 import java.util.Observable;
 import java.util.Stack;
