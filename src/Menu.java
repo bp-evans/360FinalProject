@@ -1,7 +1,16 @@
+/*
+Name: Brandon, Cameron, Ismael
+Class ID: 70606
+Assignment: Final Project
+Description: This is the Menu class which sets up the menu
+			 available to the user.
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class Menu{
     public static void main(String args[]){
@@ -49,5 +58,7 @@ public class Menu{
             }
         }
         roster.addActionListener(new loadRoster());
+        
+        
     }
 }

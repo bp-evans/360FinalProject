@@ -1,3 +1,12 @@
+//main display where stuff is displayed 
+/*
+Name: Brandon, Cameron, Ismael
+Class ID: 70606
+Assignment: Final Project
+Description: This is the mainDisplay class which is where the
+			 initial main display is located.
+*/
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,19 +20,13 @@ public class mainDisplay extends JPanel implements Observer {
 	private JLabel label;
 	
 	public mainDisplay() {
-		label = new JLabel("Test Label",SwingConstants.CENTER);
+		label = new JLabel("Test Label", SwingConstants.CENTER);
 		this.add(label);
 		
 	}
 	
 	public void updateLabel(String arg) { // mainly for use with about
 		label.setText(arg);
-		
-	}
-	
-	public void removeLabel() {
-		this.remove(label); // for testing purposes at the moment
-		this.repaint(); // you need this to update anything that is removed
 	}
 
 	@Override
