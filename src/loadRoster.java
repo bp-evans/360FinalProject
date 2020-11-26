@@ -1,41 +1,27 @@
+/*
+Name: Brandon, Cameron, Ismael
+Class ID: 70606
+Assignment: Final Project
+Description: This is the loadRoster class which prompts the user
+			 to select a CSV file.
+*/
+
 import javax.swing.*;
 
 public class loadRoster {
 
-    public static final String delimiter = ",";
-
-    public static void read(String csvFile) {
-        try {
-            File file = new File(csvFile);
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            String line = "";
-            String[] tempArr;
-            while ((line = br.readLine()) != null) {
-                tempArr = line.split(delimiter);
-                for (String tempStr : tempArr) {
-                    System.out.print(tempStr + " ");
-                }
-                System.out.println();
-            }
-            br.close();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
-
     //csv = comma separated values
     //ID(int), FN(String), LN(String), Program(String), AL(String), ASURITE(String)
     //Six fields per row
-    public static void loadRoster() {
+    public static void getFile() {
         JButton open = new JButton();
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Please Select a CSV file to Load");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
-        if (fileChooser.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
-            File roster = fileChooser.getSelectedFile();
-            String csvRoster = roster.getAbsolutePath();
-            loadRoster.read(csvRoster);
+        if(fileChooser.showOpenDialog(open) == JFileChooser.APPROVE_OPTION){
+            //fileChooser.getSelectedFile().getAbsolutePath();
+        }
 
     }
 }

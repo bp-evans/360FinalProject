@@ -1,11 +1,30 @@
+/*
+Name: Brandon, Cameron, Ismael
+Class ID: 70606
+Assignment: Final Project
+Description: This is the main class which sets up the JFrame and
+			 JMenu.
+*/
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import org.jfree.chart.ChartFactory;  
+import org.jfree.chart.ChartPanel;  
+import org.jfree.chart.JFreeChart;  
+import org.jfree.chart.plot.XYPlot;  
+import org.jfree.data.xy.XYDataset;  
+import org.jfree.data.xy.XYSeries;  
+import org.jfree.data.xy.XYSeriesCollection;
+
 
 public class Main extends JFrame implements ActionListener {
 	
@@ -14,6 +33,7 @@ public class Main extends JFrame implements ActionListener {
 	mainDisplay disp;
 	
 	public Main() {
+		
 		listen = new commandListener();
 		// Setting up the main JFrame
 		//frame = new JFrame("CSE360 Final Project");
@@ -48,20 +68,19 @@ public class Main extends JFrame implements ActionListener {
         
         JMenuItem data = new JMenuItem("Plot Data");
         file.add(data);
-        data.setActionCommand("plot");
+        data.setActionCommand("add");
         data.addActionListener(this);
         
-       //add about tab to menu
+        //add about tab to menu
         JMenu about = new JMenu("About");
         jMenuBar.add(about);
-        JMenuItem aboutPrint = new JMenuItem("Team Members");
+        JMenuItem aboutPrint = new JMenuItem("About");
         about.add(aboutPrint);
         aboutPrint.setActionCommand("aboutPrint");
         aboutPrint.addActionListener(this);
        
-        
-        
 	}
+	
 	public static void main(String[] args) {
 		Main mainScreen = new Main();
 		mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,16 +92,13 @@ public class Main extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == "aboutPrint") {
-			//Dialog Box Displaying our names per the slides
-			JOptionPane.showMessageDialog(this, "This project was completed by: Brandon, Ismael, and Cameron");
-			//System.out.println("Print the about information");
-			//disp.updateLabel("This project was completed by: Brandon, Ismael, Cameron");
+			System.out.println("Print the about information");
+			disp.updateLabel("This project was completed by: Brandon, Ismael, Cameron");
 		}
 		else if(e.getActionCommand() == "save") {
-			System.out.println("Save was selected");
-			disp.removeLabel();
+			System.out.println("The data was saved");
 		}
-		else if(e.getActionCommand() == "roter") {
+		else if(e.getActionCommand() == "roster") {
 			System.out.println("Please select a csv file to upload");
 			loadRoster.getFile(); //calls getFile from loadRoster allowing user to choose a file to upload
 		}
@@ -90,8 +106,13 @@ public class Main extends JFrame implements ActionListener {
 			
 		}
 		else if(e.getActionCommand() == "add") {
+			System.out.println("Plot the data");
 			
+			ScatterPlot plot = new ScatterPlot(); //instantiate new object
+			plot.setSize(800,450);
+			plot.setLocationRelativeTo(null);
+			plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //close only plot window, not main program
+			plot.setVisible(true);
 		}
 	}
-	
 }
