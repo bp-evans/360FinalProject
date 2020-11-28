@@ -9,7 +9,8 @@ public class Repository extends Observable{
 	private double totalDistance;
 	
 	private Repository() {
-		
+		Stack<Point> points;
+		Stack<Line> lines;
 	}
 	public Repository getInstance() {
 		return null;

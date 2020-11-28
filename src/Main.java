@@ -9,6 +9,8 @@ Description: This is the main class which sets up the JFrame and
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -16,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
+/*
 import org.jfree.chart.ChartFactory;  
 import org.jfree.chart.ChartPanel;  
 import org.jfree.chart.JFreeChart;  
@@ -24,17 +26,20 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYDataset;  
 import org.jfree.data.xy.XYSeries;  
 import org.jfree.data.xy.XYSeriesCollection;
+*/
 
 
 public class Main extends JFrame implements ActionListener {
 	
 	private JFrame frame;
-	private commandListener listen;
 	mainDisplay disp;
+	private JButton dateButton;
 	
 	public Main() {
+		dateButton = new JButton("Enter Date Information");
+		dateButton.setActionCommand("Get Date");
+		dateButton.addActionListener(this);
 		
-		listen = new commandListener();
 		// Setting up the main JFrame
 		//frame = new JFrame("CSE360 Final Project");
 		this.setTitle("CSE 360 Final Project");
@@ -100,19 +105,47 @@ public class Main extends JFrame implements ActionListener {
 		}
 		else if(e.getActionCommand() == "roster") {
 			System.out.println("Please select a csv file to upload");
-			loadRoster.getFile(); //calls getFile from loadRoster allowing user to choose a file to upload
+			File csv_file = loadRoster.getFile(); //calls getFile from loadRoster allowing user to choose a file to upload
+			try {
+				disp.showRoster(csv_file);
+				this.repaint();
+				this.setVisible(true);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} // calls mainDisplay function to create table with file information
 		}
 		else if(e.getActionCommand() == "Attendance") {
+			File attn_file = loadRoster.getFile();
+			try {
+				disp.attenRosterDate(attn_file,dateButton);
+				this.repaint();
+				this.setVisible(true);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		else if(e.getActionCommand() == "Get Date") {
+			try {
+				disp.showAttendance();
+				this.repaint();
+				this.setVisible(true);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}
 		else if(e.getActionCommand() == "add") {
 			System.out.println("Plot the data");
-			
+			/*
 			ScatterPlot plot = new ScatterPlot(); //instantiate new object
 			plot.setSize(800,450);
 			plot.setLocationRelativeTo(null);
 			plot.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //close only plot window, not main program
 			plot.setVisible(true);
+			*/
 		}
 	}
 }
