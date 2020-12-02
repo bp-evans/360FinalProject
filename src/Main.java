@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Observer;
 
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -34,8 +35,15 @@ public class Main extends JFrame implements ActionListener {
 	private JFrame frame;
 	mainDisplay disp;
 	private JButton dateButton;
+	private controller ctrl;
+	private Repository res;
 	
 	public Main() {
+		
+		ctrl = new controller();
+		
+		res = new Repository();
+		
 		dateButton = new JButton("Enter Date Information");
 		dateButton.setActionCommand("Get Date");
 		dateButton.addActionListener(this);
@@ -46,7 +54,11 @@ public class Main extends JFrame implements ActionListener {
 		// creating and adding the scroll bar
 				
 		disp = new mainDisplay(); 
-	    this.add(disp);
+		res.addObserver(disp);
+		JScrollPane mainScroll = new JScrollPane(disp);
+		mainScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		mainScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	    this.add(mainScroll);
 	    
 	    JMenuBar jMenuBar = new JMenuBar();
         this.setJMenuBar(jMenuBar);
@@ -102,6 +114,12 @@ public class Main extends JFrame implements ActionListener {
 		}
 		else if(e.getActionCommand() == "save") {
 			System.out.println("The data was saved");
+			try {
+				ctrl.writeDataToCSV(disp.arr, disp.column,disp.lines,disp.dateCount+6);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		else if(e.getActionCommand() == "roster") {
 			System.out.println("Please select a csv file to upload");
@@ -121,6 +139,7 @@ public class Main extends JFrame implements ActionListener {
 				disp.attenRosterDate(attn_file,dateButton);
 				this.repaint();
 				this.setVisible(true);
+				
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -139,6 +158,12 @@ public class Main extends JFrame implements ActionListener {
 		}
 		else if(e.getActionCommand() == "add") {
 			System.out.println("Plot the data");
+			try {
+				res.updatePoints(disp.dateCount);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			/*
 			ScatterPlot plot = new ScatterPlot(); //instantiate new object
 			plot.setSize(800,450);

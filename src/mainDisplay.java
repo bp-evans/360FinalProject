@@ -12,11 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -29,13 +32,18 @@ public class mainDisplay extends JPanel implements Observer {
 	
 	private JLabel label;
 	private JTable table;
-	private String month;
-	private String day; 
+	private ArrayList<String> month;
+	private ArrayList<String> day; 
 	private JTextField month1, day1;
 	private File roster_file;
 	private File atten_file;
 	private controller ctrl;
+	public String[][] arr;
+	public String[] column;
 	public boolean dateChosen;
+	public int lines;
+	private int countAtten;
+	public int dateCount;
 	
 	public mainDisplay() {
 		label = new JLabel("", SwingConstants.CENTER);
@@ -43,6 +51,12 @@ public class mainDisplay extends JPanel implements Observer {
 		//this.setLayout(new BorderLayout());
 		ctrl = new controller();
 		this.dateChosen = false;
+		arr = null;
+		column = null;
+		countAtten = 7;
+		dateCount = 0;
+		month = new ArrayList<String>();
+		day = new ArrayList<String>();
 	}
 	
 	public void updateLabel(String arg) { // mainly for use with about
@@ -53,9 +67,8 @@ public class mainDisplay extends JPanel implements Observer {
 		this.remove(this.label);
 		this.repaint();
 		roster_file = csv_file;
-		String[][] arr;
 		arr = ctrl.tableData(csv_file,6);
-		String column[] = {"ID","First Name","Last Name","Program","Level","ASURITE"};
+		column = new String[] {"ID","First Name","Last Name","Program","Level","ASURITE"};
 		table = new JTable(arr,column);
 		//table.setBounds(30,40,500,300);
 		JScrollPane sp = new JScrollPane(table);
@@ -80,25 +93,46 @@ public class mainDisplay extends JPanel implements Observer {
 	}
 	
 	public void showAttendance() throws FileNotFoundException {
-		this.month = month1.getText();
-		this.day = day1.getText();
+		this.month.add(month1.getText()); 
+		this.day.add(day1.getText());
+		dateCount++;
 		System.out.println("Month: " + this.month);
 		System.out.println("Day: " + this.day);
 		this.removeAll();
 		this.repaint();
-		String[][] arr;
-		arr = ctrl.attenTableData(atten_file, roster_file, 7);
-		String column[] = {"ID","First Name", "Last Name", "Program", "Level", "ASURITE", month.substring(0,3) + " " + day};
+		ctrl.processAttenFile(atten_file,roster_file);
+		if(countAtten > 7) {
+			arr = ctrl.attenAddData(atten_file,countAtten);
+			column = ctrl.generateColumns(month, day, dateCount);
+			//column = new String[] {"ID","First Name", "Last Name", "Program", "Level", "ASURITE", month.get(substring(0,3) + " " + day,"Other Date"};
+		} else {
+			arr = ctrl.attenTableData(atten_file, roster_file, countAtten);
+			column = ctrl.generateColumns(month, day, dateCount);
+			//column = new String[] {"ID","First Name", "Last Name", "Program", "Level", "ASURITE", month.substring(0,3) + " " + day};
+		}
+		
+		
+		this.lines = arr.length;
+		
 		table = new JTable(arr,column);
 		JScrollPane sp = new JScrollPane(table);
+		this.countAtten++;
+		JOptionPane.showMessageDialog(this, "Data loaded for: " + ctrl.countLoad + " Users");
 		this.add(sp);
 		this.repaint();
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
+	public void update(Observable o, Object arg1) {
 		// TODO Auto-generated method stub
-		
+		ScatterPlot sc = new ScatterPlot(((Repository)o).getPoints());
 	}
 	
 }
+
+
+
+
+
+
+
